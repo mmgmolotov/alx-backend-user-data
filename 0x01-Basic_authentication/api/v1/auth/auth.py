@@ -5,6 +5,7 @@ Auth
 from flask import request
 from typing import List
 from typing import TypeVar
+import fnmatch
 
 
 class Auth:
@@ -26,13 +27,16 @@ class Auth:
         if excluded_paths is None or len(excluded_paths) == 0:
             return True
 
-        if path.endswith('/') is False:
-            path = path + '/'
+        if path is None:
+            return True
 
-        for excluded_path in excluded_paths:
-            if excluded_path.endswith('/') is False:
-                excluded_path = excluded_path + '/'
-            if path == excluded_path:
+        if excluded_paths is None or len(excluded_paths) == 0:
+            return True
+
+        path = path.rstrip('/')
+        
+        for pattern in excluded_paths:
+            if fnmatch.fnmatch(path, pattern.rstrip('/')):
                 return False
 
         return True
