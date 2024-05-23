@@ -46,6 +46,10 @@ def before_request():
     if auth.current_user(request) is None:
         return jsonify({"error": "Forbidden"}), 403
 
+    request.current_user = auth.current_user(request)
+
+    if current_user is None
+        abort(403)
 
 @app.errorhandler(404)
 def not_found(error) -> str:
