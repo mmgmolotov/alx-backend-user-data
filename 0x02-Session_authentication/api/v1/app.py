@@ -8,7 +8,6 @@ from flask import Flask, jsonify, abort, request
 from flask_cors import CORS
 import os
 
-
 app = Flask(__name__)
 app.register_blueprint(app_views)
 CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
@@ -52,9 +51,7 @@ def forbidden_error(error) -> str:
 
 @app.before_request
 def before_request() -> str:
-    """
-    Before Request Handler - Requests Validation
-    """
+    """ Before Request Handler - Requests Validation """
     if auth is None:
         return
 
