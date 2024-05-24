@@ -5,7 +5,10 @@ from models.base import Base
 
 
 class UserSession(Base):
-    """ UserSession class to store session data """
+    """
+    UserSession class
+    to store session data
+    """
     def __init__(self, *args: list, **kwargs: dict):
         """ Initialize a UserSession instance """
         super().__init__(*args, **kwargs)
