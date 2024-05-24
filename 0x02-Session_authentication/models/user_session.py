@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-""" UserSession module for the API
+"""User session module.
 """
 from models.base import Base
 
 
 class UserSession(Base):
+    """User session class.
     """
-    UserSession class
-    to store session data
-    """
+
     def __init__(self, *args: list, **kwargs: dict):
-        """ Initialize a UserSession instance """
+        """Initializes a User session instance.
+        """
         super().__init__(*args, **kwargs)
         self.user_id = kwargs.get('user_id')
         self.session_id = kwargs.get('session_id')
