@@ -26,6 +26,9 @@ elif AUTH_TYPE == "session_auth":
 elif AUTH_TYPE == "session_exp_auth":
     from api.v1.auth.session_exp_auth import SessionExpAuth
     auth = SessionExpAuth()
+elif AUTH_TYPE == "session_db_auth":
+    from api.v1.auth.session_db_auth import SessionDBAuth
+    auth = SessionDBAuth()
 
 
 @app.errorhandler(404)
@@ -66,7 +69,7 @@ def before_request() -> str:
             auth.session_cookie(request) is None):
         abort(401)
 
-    request.current_user = auth.current_user(request)
+    request.current_user = auth.current_user(request)  # Assign current_user
 
     if request.current_user is None:
         abort(403)
