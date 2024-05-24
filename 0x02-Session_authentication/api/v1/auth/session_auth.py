@@ -48,7 +48,6 @@ def login():
     """
     from api.v1.app import auth
 
-    
     email = request.form.get('email')
     password = request.form.get('password')
 
