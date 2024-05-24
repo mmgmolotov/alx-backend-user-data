@@ -5,6 +5,7 @@ from api.v1.auth.session_auth import SessionAuth
 from datetime import datetime, timedelta
 from os import getenv
 
+
 class SessionExpAuth(SessionAuth):
     """ SessionExpAuth class with expiration """
     def __init__(self):
@@ -39,6 +40,7 @@ class SessionExpAuth(SessionAuth):
         if self.session_duration <= 0:
             return session_dict.get("user_id")
         created_at = session_dict.get("created_at")
-        if created_at + timedelta(seconds=self.session_duration) < datetime.now():
+        if created_at + timedelta(seconds=self.session_duration
+                                  ) < datetime.now():
             return None
         return session_dict.get("user_id")
