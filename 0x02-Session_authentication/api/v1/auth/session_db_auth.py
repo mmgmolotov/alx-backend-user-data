@@ -8,9 +8,13 @@ from datetime import datetime, timedelta
 
 
 class SessionDBAuth(SessionExpAuth):
-    """ SessionDBAuth class for session storage in database """
+    """
+    SessionDBAuth class for session storage in database
+    """
     def create_session(self, user_id=None):
-        """ Create and store new instance of UserSession """
+        """
+        Create and store new instance of UserSession
+        """
         session_id = super().create_session(user_id)
         if session_id is None:
             return None
@@ -19,7 +23,9 @@ class SessionDBAuth(SessionExpAuth):
         return session_id
 
     def user_id_for_session_id(self, session_id=None):
-        """ Return the User ID by querying UserSession """
+        """
+        Return the User ID by querying UserSession
+        """
         if session_id is None:
             return None
         try:
@@ -36,7 +42,10 @@ class SessionDBAuth(SessionExpAuth):
         return session.user_id
 
     def destroy_session(self, request=None):
-        """ Destroy the UserSession based on the Session ID from the request cookie """
+        """
+        Destroy the UserSession based on
+        the Session ID from the request cookie
+        """
         if request is None:
             return False
         session_id = self.session_cookie(request)
